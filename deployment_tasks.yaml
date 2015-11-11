@@ -3,9 +3,7 @@
 
 - id: fuel-plugin-upstream-pins
   type: puppet
-  #required_for: [fuel_pkgs]
-  #requires: [deploy_start]
-  role: '*'
+  role: [fuel-plugin-upstream]
   requires: [pre_deployment_start,rsync_core_puppet]
   required_for: [pre_deployment_end]
   parameters:
@@ -17,13 +15,22 @@
 
 - id: fuel-plugin-upstream-facts
   type: puppet
-  #required_for: [fuel_pkgs]
-  #requires: [deploy_start]
-  role: '*'
+  role: [fuel-plugin-upstream]
   requires: [pre_deployment_start,rsync_core_puppet]
   required_for: [pre_deployment_end]
   parameters:
     puppet_manifest: "apply_package_fact.pp"
+    puppet_modules: "/etc/puppet/modules"
+    timeout: 300
+    #cwd: /
+
+- id: fuel-plugin-upstream-repos
+  type: puppet
+  role: [fuel-plugin-upstream]
+  requires: [pre_deployment_start,rsync_core_puppet]
+  required_for: [pre_deployment_end]
+  parameters:
+    puppet_manifest: "apply_package_repos.pp"
     puppet_modules: "/etc/puppet/modules"
     timeout: 300
     #cwd: /

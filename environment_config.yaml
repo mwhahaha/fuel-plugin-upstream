@@ -1,7 +1,7 @@
 attributes:
   fuel-plugin-upstream_text:
-    value: 'Set default value'
-    label: 'Text field'
-    description: 'Description for text field'
+    value: 'liberty'
+    label: 'UCA OpenStack Release'
+    description: 'This is the named release for the UCA packages (kilo, liberty, etc)'
     weight: 25
     type: "text"
