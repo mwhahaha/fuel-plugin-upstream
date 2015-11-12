@@ -17,9 +17,9 @@ apt::source { 'UCA':
 }
 
 apt::pin { 'UCA':
-  packages => '*',
-  release  => "${::lsbdistcodename}-updates",
-  origin   => 'Canonical',
-  codename => "${::lsbdistcodename}-updates/liberty",
-  priority => '9000',
+  packages   => '*',
+  release    => "${::lsbdistcodename}-updates",
+  originator => 'Canonical',
+  codename   => "${::lsbdistcodename}-updates/liberty",
+  priority   => '9000',
 }
