@@ -1,12 +1,7 @@
 notice('MOULAR: fuel-plugin-upstream/apply_package_repos.pp')
 
-exec { 'install ubuntu-cloud-keyring':
-  command     => 'apt-get -y install ubuntu-cloud-keyring',
-  tries       => 3,
-  try_sleep   => 1,
-  refreshonly => true,
-  subscribe   => File['/etc/apt/sources.list.d/UCA.list'],
-  notify      => Exec['apt_update']
+package { 'ubuntu-cloud-keyring':
+  ensure  => 'present',
 }
 
 # TODO(aschultz): make release a plugin option
@@ -23,3 +18,7 @@ apt::pin { 'UCA':
   codename   => "${::lsbdistcodename}-updates/liberty",
   priority   => '9000',
 }
+
+
+Package['ubuntu-cloud-keyring'] ~>
+  Exec['apt_update']
