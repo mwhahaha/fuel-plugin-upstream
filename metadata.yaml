@@ -1,11 +1,11 @@
 # Plugin name
 name: fuel-plugin-upstream
 # Human-readable name for your plugin
-title: This plugin puts in overrides to support running the UCA packages with fuel.
+title: UCA Packages
 # Plugin version
 version: '1.0.0'
 # Description
-description: Enable to use plugin X for Neutron
+description: Enable to add suport for UCA packages as part of the deployment
 # Required fuel version
 fuel_version: ['8.0']
 # Specify license of your plugin
