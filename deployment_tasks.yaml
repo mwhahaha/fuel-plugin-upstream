@@ -23,7 +23,6 @@
     puppet_manifest: "apply_mos_package_pins.pp"
     puppet_modules: "/etc/puppet/modules"
     timeout: 300
-    #cwd: /
 
 
 - id: fuel-plugin-upstream-facts
@@ -35,37 +34,14 @@
     puppet_manifest: "apply_package_fact.pp"
     puppet_modules: "/etc/puppet/modules"
     timeout: 300
-    #cwd: /
 
 - id: fuel-plugin-upstream-repos
   type: puppet
   role: [fuel-plugin-upstream]
-  requires: [deploy_start]
-  required_for: [fuel_pkgs]
+  requires: [deploy_start,hiera,globals]
+  required_for: [tools]
   parameters:
     puppet_manifest: "apply_package_repos.pp"
     puppet_modules: "/etc/puppet/modules"
-    timeout: 300
-    #cwd: /
+    timeout: 600
 
-#- id: fuel-plugin-upstream-post-deployment-sh
-#  type: shell
-#  role: [fuel-plugin-upstream]
-#  required_for: [post_deployment_end]
-#  requires: [post_deployment_start]
-#  parameters:
-#    cmd: echo post_deployment_task_executed > /tmp/post_deployment
-#    retries: 3
-#    interval: 20
-#    timeout: 180
-
-#- id: fuel-plugin-upstream-pre-deployment-sh
-#  type: shell
-#  role: [fuel-plugin-upstream]
-#  required_for: [pre_deployment_end]
-#  requires: [pre_deployment_start]
-#  parameters:
-#    cmd: echo pre_deployment_task_executed > /tmp/pre_deployment
-#    retries: 3
-#    interval: 20
-#    timeout: 180

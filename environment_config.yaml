@@ -1,5 +1,5 @@
 attributes:
-  fuel-plugin-upstream_text:
+  uca_openstack_release:
     value: 'liberty'
     label: 'UCA OpenStack Release'
     description: 'This is the named release for the UCA packages (kilo, liberty, etc)'
