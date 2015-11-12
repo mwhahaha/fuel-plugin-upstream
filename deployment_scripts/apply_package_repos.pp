@@ -5,7 +5,8 @@ exec { 'install ubuntu-cloud-keyring':
   tries       => 3,
   try_sleep   => 1,
   refreshonly => true,
-  subscribe   => File["/etc/apt/sources.list.d/uca.list"],
+  subscribe   => File['/etc/apt/sources.list.d/UCA.list'],
+  notify      => Exec['apt_update']
 }
 
 # TODO(aschultz): make release a plugin option
@@ -17,7 +18,7 @@ apt::source { 'UCA':
 
 apt::pin { 'UCA':
   packages => '*',
-  release  => "${::lsbdistcodename}-updates"
+  release  => "${::lsbdistcodename}-updates",
   origin   => 'Canonical',
   codename => "${::lsbdistcodename}-updates/liberty",
   priority => '9000',
