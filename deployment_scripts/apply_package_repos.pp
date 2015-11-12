@@ -6,7 +6,6 @@ exec { 'install ubuntu-cloud-keyring':
   try_sleep   => 1,
   refreshonly => true,
   subscribe   => File["/etc/apt/sources.list.d/uca.list"],
-  notify      => Exec['apt_update'],
 }
 
 # TODO(aschultz): make release a plugin option
