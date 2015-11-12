@@ -1,4 +1,4 @@
-notice('MOULAR: apply_package_fact.pp')
+notice('MOULAR: fuel-plugin-upstream/apply_package_fact.pp')
 
 file { ['/etc/facter', '/etc/facter/facts.d']:
   ensure => 'directory'

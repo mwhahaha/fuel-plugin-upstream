@@ -1,6 +1,6 @@
 fuel-plugin-upstream:
   # Role name
-  name: "upstream"
+  name: "packages-uca"
   # Role description
   description: "Use UCA OpenStack packages"
   # If primaty then during orchestration this role will be

@@ -1,4 +1,4 @@
-notice('MOULAR: apply_mos_package_pins.pp')
+notice('MOULAR: fuel-plugin-upstream/apply_mos_package_pins.pp')
 
 # we need the mos fork haproxy
 apt::pin { 'haproxy-mos':
