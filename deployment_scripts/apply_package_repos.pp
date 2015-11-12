@@ -1,15 +1,15 @@
 notice('MOULAR: fuel-plugin-upstream/apply_package_repos.pp')
 
 $plugin_config = hiera('fuel-plugin-upstream')
-$os_release = $plugin_config['uca_openstack_release']
+$os_release    = pick($plugin_config['uca_openstack_release'], 'liberty')
+$uca_repo_url  = pick($plugin_config['uca_repo_url'], 'http://ubuntu-cloud.archive.canonical.com/ubuntu')
 
 package { 'ubuntu-cloud-keyring':
   ensure  => 'present',
 }
 
-# TODO(aschultz): make release a plugin option
 apt::source { 'UCA':
-  location => 'http://ubuntu-cloud.archive.canonical.com/ubuntu',
+  location => $uca_repo_url,
   release  => "${::lsbdistcodename}-updates/${os_release}",
   repos    => 'main'
 }

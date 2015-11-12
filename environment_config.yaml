@@ -1,4 +1,10 @@
 attributes:
+  uca_repo_url:
+    value: 'http://ubuntu-cloud.archive.canonical.com/ubuntu'
+    label: 'URL to UCA repository'
+    description: 'This the url to the repository hosting the UCA packages'
+    weight: 25
+    type: "text"
   uca_openstack_release:
     value: 'liberty'
     label: 'UCA OpenStack Release'
