@@ -1,7 +1,7 @@
 notice('MOULAR: fuel-plugin-upstream/apply_package_repos.pp')
 
 $plugin_config = hiera('fuel-plugin-upstream')
-$os_release = $plugin_conf['uca_openstack_release']
+$os_release = $plugin_config['uca_openstack_release']
 
 package { 'ubuntu-cloud-keyring':
   ensure  => 'present',
