@@ -16,6 +16,6 @@ file { "${hiera_dir}/${plugin_yaml}":
 
 file_line { "${plugin_name}_hiera_ovverride":
   path  => '/etc/hiera.yaml',
-  line  => "  - overide/${plugin_name}",
-  after => '  - ovveride/plugin'
+  line  => "  - override/${plugin_name}",
+  after => '  - override/plugins'
 }
