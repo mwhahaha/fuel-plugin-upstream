@@ -1,11 +1,11 @@
 # Plugin name
 name: fuel-plugin-upstream
 # Human-readable name for your plugin
-title: UCA Packages
+title: Upstream OpenStack Packages
 # Plugin version
 version: '1.0.0'
 # Description
-description: Enable to add suport for UCA packages as part of the deployment
+description: Enables adding support for upstream OpenStack package repositories as part of the deployment
 # Required fuel version
 fuel_version: ['8.0', '9.0']
 # Specify license of your plugin

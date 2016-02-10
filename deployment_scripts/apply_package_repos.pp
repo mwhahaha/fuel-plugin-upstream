@@ -1,24 +1,41 @@
 notice('MOULAR: fuel-plugin-upstream/apply_package_repos.pp')
 
 $plugin_config = hiera('fuel-plugin-upstream')
-$os_release    = pick($plugin_config['uca_openstack_release'], 'liberty')
-$uca_repo_url  = pick($plugin_config['uca_repo_url'], 'http://ubuntu-cloud.archive.canonical.com/ubuntu')
+case $plugin_config['repo_type'] {
+  'uca':  {
+     $os_release = pick($plugin_config['uca_openstack_release'], 'mitaka')
+     $repo_url   = pick($plugin_config['uca_repo_url'], 'http://ubuntu-cloud.archive.canonical.com/ubuntu')
+     $release    = "${::lsbdistcodename}-updates/${os_release}"
+     $repo_name  = 'UCA'
+     $originator = 'Canonical'
+  }
+  'debian': {
+     $os_release = pick($plugin_config['debian_trusty_openstack_release'], 'trusty-mitaka-backports')
+     $repo_url   = pick($plugin_config['debian_trusty_repo_url'], 'http://mitaka-trusty.pkgs.mirantis.com/debian')
+     $release    = $os_release
+     $repo_name  = 'debian_trusty'
+     $originator = 'Debian'
+  }
+  default: {
+     fail("Invalid repo type ${plugin_config['repo_type']}")
+  }
+}
 
 package { 'ubuntu-cloud-keyring':
   ensure  => 'present',
 }
 
-apt::source { 'UCA':
-  location => $uca_repo_url,
-  release  => "${::lsbdistcodename}-updates/${os_release}",
+apt::source { $repo_name:
+  location => $repo_url,
+  release  => $release
   repos    => 'main'
 }
 
-apt::pin { 'UCA':
+apt::pin { $repo_name:
   packages   => '*',
-  release    => "${::lsbdistcodename}-updates",
-  originator => 'Canonical',
-  codename   => "${::lsbdistcodename}-updates/${os_release}",
+  release    => $release
+  originator => $originator
+  codename   => "${release}/${os_release}",
   priority   => '9000',
 }
 
