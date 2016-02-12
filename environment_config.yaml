@@ -1,13 +1,67 @@
 attributes:
+  repo_type:
+    label: "OpenStack packages repository"
+    type: "radio"
+    weight: 5
+    value: "uca"
+    values:
+      - data: "uca"
+        label: "Ubuntu Cloud Archive"
+        description: "Use Ubuntu Cloud Archive repository"
+      - data: "debian"
+        label: "Debian Trusty backports"
+        label: "Use Debian Ubuntu Trusty backports"
   uca_repo_url:
     value: 'http://ubuntu-cloud.archive.canonical.com/ubuntu'
     label: 'URL to UCA repository'
     description: 'This the url to the repository hosting the UCA packages'
     weight: 25
     type: "text"
+    restrictions:
+      - condition: "settings:fuel-plugin-upstream.repo_type.value != 'uca'"
+        action: "hide"
   uca_openstack_release:
-    value: 'liberty'
+    value: 'mitaka'
     label: 'UCA OpenStack Release'
     description: 'This is the named release for the UCA packages (kilo, liberty, etc)'
     weight: 25
     type: "text"
+    restrictions:
+      - condition: "settings:fuel-plugin-upstream.repo_type.value != 'uca'"
+        action: "hide"
+  debian_trusty_repo_url:
+    value: 'http://mitaka-trusty.pkgs.mirantis.com/debian'
+    label: 'URL to UCA repository'
+    description: 'This the url to the repository hosting the UCA packages'
+    weight: 25
+    type: "text"
+    restrictions:
+      - condition: "settings:fuel-plugin-upstream.repo_type.value != 'debian'"
+        action: "hide"
+  debian_trusty_openstack_release:
+    value: 'trusty-mitaka-backports'
+    label: 'UCA OpenStack Release'
+    description: 'This is the named release for the UCA packages (kilo, liberty, etc)'
+    weight: 25
+    type: "text"
+    restrictions:
+      - condition: "settings:fuel-plugin-upstream.repo_type.value != 'debian'"
+        action: "hide"
+  pin_haproxy:
+    label: "HAProxy APT Pinning"
+    description: "Use Fuel HAProxy packages instead of upstream"
+    weight: 60
+    type: "checkbox"
+    value: true
+  pin_rabbitmq:
+    label: "RabbitMQ APT Pinning"
+    description: "Use Fuel RabbitMQ packages instead of upstream"
+    weight: 61
+    type: "checkbox"
+    value: true
+  pin_ceph:
+    label: "Ceph APT Pinning"
+    description: "Use Fuel Ceph packages instead of upstream"
+    weight: 62
+    type: "checkbox"
+    value: true
